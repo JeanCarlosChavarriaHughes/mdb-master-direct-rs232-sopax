@@ -1861,6 +1861,7 @@ def mdb_cashless_get_settings(_lstring):
 
     # extract reader level
     if _lcashless_number == 1:
+        print(g.cashless1_settings)
         g.cashless1_level = g.cashless1_settings[1]
         _lreader_level = g.cashless1_level
     else:

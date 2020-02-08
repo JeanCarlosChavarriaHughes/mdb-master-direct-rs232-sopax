@@ -275,7 +275,9 @@ def MainProcedure():
         else:
             g.ser.rts = False
             print("Serial port opened")
-    except:
+    #except:
+    except Exception as e:
+        print(e)
         print("Error opening serial port")
         sys.exit(3)
     try: 
@@ -286,7 +288,9 @@ def MainProcedure():
         g.sock, addr = g.conn.accept()
         time.sleep(1)
         g.sock.send('{"AppName" : "PyMDBMasterDirect","Version" : "0.50","CreatedBy" : "www.vendingtools.ro"}\r\n'.encode())
-    except:
+    #except:
+    except Exception as e:
+        print(e)
         print("Cannot open socket for listening. Maybe the port is in use.")
         sys.exit(4)
     while True:
@@ -306,7 +310,7 @@ def MainProcedure():
                 g.sock, addr = g.conn.accept()
         
         # look for messages on serial port
-#        _gsir = g.ser.read(128)
+        _gsir = g.ser.read(128)
         
         #polling MDB bill if previously inited
         if g.bill_inited:

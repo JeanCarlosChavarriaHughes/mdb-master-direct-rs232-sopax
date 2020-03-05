@@ -36,14 +36,21 @@ def mdb_add_crc(_linput):
 def mdb_hex_dump(_psir):
     _lstring = ""
     for _li in range(0,len(_psir)):
-        _ltmp_hex = hex(_psir[_li])[2:]
+    	try:
+        	_ltmp_hex = hex(_psir[_li])[2:]
+        except TypeError:
+        	print("TypeError in mdb_hex_dump")
+        	print("Value of _psir[_li] is: ")
+        	print(_psir[_li])
+        	print("Type of _psir[_li] is:")
+        	print(type(_psir[_li]))
+        	_ltmp_hex = _psir[_li][2:]
         if len(_ltmp_hex) == 1:
             _ltmp_hex = "0x0" + _ltmp_hex
         else:
             _ltmp_hex = "0x" + _ltmp_hex
         _lstring += _ltmp_hex + " "
     print(_lstring)
-   
 # *************************************************
 def mdb_bill_send_ack():
     # sending ACK
